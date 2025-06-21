@@ -1,14 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import BarChart from '../components/Dashboard/BarChart';
+import DonutChartCard from '../components/Dashboard/DonutChartCard';
+import LineChart from '../components/Dashboard/LineChart';
+import StatCardGrid from '../components/Dashboard/StatCardGrid';
+import MainAppLayout from '../components/layout/MainAppLayout';
 
-const Index = () => {
+/**
+ * The main dashboard overview page.
+ * This component composes the entire user-facing dashboard by assembling various 
+ * organism-level components within the main application layout.
+ */
+const IndexPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <MainAppLayout>
+      <div className="flex flex-col gap-6 md:gap-8">
+        {/* Section for key performance indicator cards */}
+        <section>
+          <StatCardGrid />
+        </section>
+
+        {/* Section for primary charts: Bar chart and Donut chart */}
+        <section className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
+          <div className="lg:col-span-2">
+            <BarChart />
+          </div>
+          <div className="lg:col-span-1">
+            <DonutChartCard />
+          </div>
+        </section>
+
+        {/* Section for the secondary line chart with calendar */}
+        <section>
+          <LineChart />
+        </section>
       </div>
-    </div>
+    </MainAppLayout>
   );
 };
 
-export default Index;
+export default IndexPage;
